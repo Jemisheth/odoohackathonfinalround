@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:odoohackathon1/controllers/category_controller.dart';
+import 'package:odoohackathon1/controllers/createissue_controller.dart';
 import 'package:odoohackathon1/controllers/getuser_controller.dart';
 
 import 'addcart_controller.dart';
@@ -25,5 +26,6 @@ void singletonSetup() {
   getIt.registerSingleton<CreatepaymentController>(CreatepaymentController());
   getIt.registerSingleton<CreateorderController>(CreateorderController());
   getIt.registerSingleton<CartController>(CartController());
+  getIt.registerSingleton<CreateissueController>(CreateissueController());
   
 }

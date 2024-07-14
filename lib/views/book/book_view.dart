@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:odoohackathon1/controllers/createissue_controller.dart';
 
 import '../../controllers/addcart_controller.dart';
 import '../../controllers/general_controller.dart';
@@ -10,7 +11,6 @@ import '../../controllers/singleton_controller.dart';
 import '../../utils/color.dart';
 
 class BookView extends StatefulWidget {
-
   final Map<String, dynamic> bookDetails;
 
   const BookView({super.key, required this.bookDetails});
@@ -20,18 +20,13 @@ class BookView extends StatefulWidget {
 }
 
 class _BookViewState extends State<BookView> {
+  int currentIndex = 0;
+  CartController cartController = getIt.get<CartController>();
+  CreateissueController createissueController = getIt.get<CreateissueController>();
 
-   int currentIndex = 0;
-  int quantity = 1;
-  String selectedMonth = '3 months';
-
-  final List<String> monthOptions = ['3 months', '6 months', '12 months'];
-
-  CartController cartController = getIt.get<CartController>(); 
 
   @override
   Widget build(BuildContext context) {
-
     final images = [
       ClipRRect(
         borderRadius: BorderRadius.circular(10),
@@ -47,22 +42,8 @@ class _BookViewState extends State<BookView> {
           filterQuality: FilterQuality.high,
         ),
       ),
-      ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Image.network(
-          '${widget.bookDetails['Image']['image3']}',
-          filterQuality: FilterQuality.high,
-        ),
-      ),
-      ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Image.network(
-          '${widget.bookDetails['Image']['image4']}',
-          filterQuality: FilterQuality.high,
-        ),
-      ),
     ];
-    
+
     return Scaffold(
       backgroundColor: background,
       appBar: AppBar(
@@ -78,7 +59,7 @@ class _BookViewState extends State<BookView> {
           ),
         ),
         title: Text(
-          'Product Details',
+          'Book Details',
           style: GoogleFonts.aBeeZee(fontSize: 18),
         ),
         backgroundColor: whiteshade,
@@ -116,59 +97,10 @@ class _BookViewState extends State<BookView> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    'Name: ${widget.bookDetails['Name']}',
+                    'Name: ${widget.bookDetails['Title']}',
                     style: GoogleFonts.aBeeZee(fontSize: 14),
                   ),
                 ),
-                const Divider(),
-                const SizedBox(height: 5),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'Price: ${widget.bookDetails['price'].toString()}',
-                        style: GoogleFonts.aBeeZee(fontSize: 14),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: containerColor,
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: black),
-                        ),
-                        child: Row(
-                          children: [
-                            IconButton(
-                              icon: const Icon(Icons.remove),
-                              onPressed: () {
-                                setState(() {
-                                  if (quantity > 1) quantity--;
-                                });
-                              },
-                            ),
-                            Text(
-                              '$quantity',
-                              style: GoogleFonts.aBeeZee(fontSize: 14),
-                            ),
-                            IconButton(
-                              icon: const Icon(Icons.add),
-                              onPressed: () {
-                                setState(() {
-                                  quantity++;
-                                });
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              
                 const Divider(),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -191,21 +123,28 @@ class _BookViewState extends State<BookView> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            'Brand: ${widget.bookDetails['brand'].toString()}',
+                            'Book Author: ${widget.bookDetails['Author'][0]['Name'].toString()}',
                             style: GoogleFonts.aBeeZee(fontSize: 14),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            'Seller: ${widget.bookDetails['renter'].toString()}',
+                            'ISBN NO: ${widget.bookDetails['volumes'][0]['ISBN'].toString()}',
                             style: GoogleFonts.aBeeZee(fontSize: 14),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            'Color: ${widget.bookDetails['color'].toString()}',
+                            'Publication Year: ${widget.bookDetails['volumes'][0]['PublicationYear'].toString()}',
+                            style: GoogleFonts.aBeeZee(fontSize: 14),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'Genre: ${widget.bookDetails['Category']['name'].toString()}',
                             style: GoogleFonts.aBeeZee(fontSize: 14),
                           ),
                         ),
@@ -256,16 +195,17 @@ class _BookViewState extends State<BookView> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Price: ${widget.bookDetails['price'].toString()}', style: GoogleFonts.aBeeZee(fontSize: 20),),
-                  Obx(
-                     () {
-                      if(cartController.isLoading.value) {
-                        return const CircularProgressIndicator();
-                      } else {
-                        return GestureDetector(
+                  Text(
+                    'Price: ${widget.bookDetails['volumes'][0]['price'].toString()}',
+                    style: GoogleFonts.aBeeZee(fontSize: 20),
+                  ),
+                  Obx(() {
+                    if (cartController.isLoading.value) {
+                      return const CircularProgressIndicator();
+                    } else {
+                      return GestureDetector(
                         onTap: () {
-                          // add cart logic
-                          // cartController.addToCart(widget.bookDetails['_id']);
+                          _showIssueBookDialog(context);
                         },
                         child: Container(
                           padding: const EdgeInsets.all(8.0),
@@ -276,21 +216,63 @@ class _BookViewState extends State<BookView> {
                               color: containerColor),
                           child: Center(
                               child: Text(
-                            'Add to cart',
+                            'Issue Book',
                             style: GoogleFonts.aBeeZee(fontSize: 14),
                           )),
                         ),
                       );
-                      }
-                      
                     }
-                  ),
+                  }),
                 ],
               ),
             ),
           ),
         ],
       ),
+    );
+  }
+
+  void _showIssueBookDialog(BuildContext context) {
+    TextEditingController reasonController = TextEditingController();
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Confirm Issue', style: GoogleFonts.aBeeZee()),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text('Do you want to issue this book?',
+                  style: GoogleFonts.aBeeZee()),
+              const SizedBox(height: 16),
+              TextField(
+                keyboardType: TextInputType.phone,
+                controller: createissueController.durationController,
+                decoration: const InputDecoration(
+                  labelText: 'Enter Duration(In days)',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+            ],
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: Text('Cancel', style: GoogleFonts.aBeeZee()),
+            ),
+            TextButton(
+              onPressed: () {
+                createissueController.createOrder();
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: Text('Confirm', style: GoogleFonts.aBeeZee()),
+            ),
+          ],
+        );
+      },
     );
   }
 }

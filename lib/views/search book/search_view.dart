@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:odoohackathon1/common/button.dart';
 import 'package:odoohackathon1/controllers/search_controller.dart';
 import 'package:odoohackathon1/controllers/singleton_controller.dart';
+import 'package:odoohackathon1/views/book/book_view.dart';
 
 import '../../controllers/general_controller.dart';
 import '../../utils/color.dart';
@@ -16,16 +18,18 @@ class SearchView extends StatefulWidget {
 }
 
 class _SearchViewState extends State<SearchView> {
-
   SearchControllerList searchControllerList = getIt.get<SearchControllerList>();
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       backgroundColor: background,
       appBar: AppBar(
         backgroundColor: appbar,
-        title: Text('Searched Book', style: GoogleFonts.aBeeZee(fontSize: 16),),
+        title: Text(
+          'Searched Book',
+          style: GoogleFonts.aBeeZee(fontSize: 16),
+        ),
       ),
       body: Obx(() {
         if (searchControllerList.isLoading.value) {
@@ -33,8 +37,8 @@ class _SearchViewState extends State<SearchView> {
             child: CircularProgressIndicator(),
           );
         } else if (searchControllerList.searchBook == null ||
-            searchControllerList.searchBook!['product'] == null ||
-            searchControllerList.searchBook!['product'].isEmpty) {
+            searchControllerList.searchBook!['books'] == null ||
+            searchControllerList.searchBook!['books'].isEmpty) {
           return Center(
             child: Text(
               'NO DATA FOUND',
@@ -50,7 +54,7 @@ class _SearchViewState extends State<SearchView> {
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0, left: 8.0),
                     child: Text(
-                      'Product Available: ',
+                      'books Available: ',
                       style: GoogleFonts.aBeeZee(
                           fontSize: 20, fontWeight: FontWeight.bold),
                     ),
@@ -60,14 +64,14 @@ class _SearchViewState extends State<SearchView> {
                     padding: const EdgeInsets.all(8.0),
                     child: ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
-                      itemCount: searchControllerList
-                          .searchBook!['product'].length,
+                      itemCount:
+                          searchControllerList.searchBook!['books'].length,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.all(4.0),
                           child: Container(
-                            height: generalConfigController.dheight * .3,
+                            // height: generalConfigController.dheight * .3,
                             width: double.infinity,
                             decoration: BoxDecoration(
                                 color: containerColor,
@@ -75,66 +79,64 @@ class _SearchViewState extends State<SearchView> {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Image.network(
-                                    '${searchControllerList.searchBook!['product'][index]['Image']['image1']}',
-                                    height: 100,
-                                  ),
-                                  Text(
-                                    'Price: ${searchControllerList.searchBook!['product'][index]['price'].toString()}',
-                                    style: GoogleFonts.aBeeZee(
-                                      fontSize: 18,
-                                      color: black,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 6,
-                                  ),
-                                  const SizedBox(
-                                    height: 6,
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      // Navigator.push(
-                                      //     context,
-                                      //     MaterialPageRoute(
-                                      //         builder: (context) => ProductScreen(
-                                      //             schemeDetails:
-                                      //                 searchControllerList
-                                      //                         .searchBook![
-                                      //                     'product'][index])));
-                                    },
-                                    child: Container(
-                                      height:
-                                          generalConfigController.dheight * .06,
-                                      width: double.infinity,
-                                      decoration: BoxDecoration(
-                                          color: appbar,
-                                          borderRadius:
-                                              BorderRadius.circular(6)),
-                                      child: Center(
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              'More details',
-                                              style: GoogleFonts.aBeeZee(
-                                                fontSize: 16,
-                                                color: white,
+                                  Row(
+                                    // crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Image.network(
+                                            '${searchControllerList.searchBook!['books']['title'][index]['Image']['image1']}',
+                                            height: 100,
+                                            width: 100,
+                                          ),
+                                          const SizedBox(
+                                            width: 20,
+                                          ),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              SizedBox(
+                                                width: 220,
+                                                child: Text(
+                                                  'Name: ${searchControllerList.searchBook!['books']['title'][index]['Title']}',
+                                                  style: GoogleFonts.aBeeZee(
+                                                      fontSize: 16),
+                                                ),
                                               ),
-                                            ),
-                                            Icon(
-                                              Icons.chevron_right,
-                                              size: 20,
-                                              color: white,
-                                            )
-                                          ],
-                                        ),
+                                              Text(
+                                                'Author: Hector Garcia',
+                                                style: GoogleFonts.aBeeZee(
+                                                    fontSize: 14),
+                                              )
+                                            ],
+                                          ),
+                                        ],
                                       ),
-                                    ),
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  CustomButton(
+                                    buttonText: 'More Details',
+                                    buttonColor: containerColor,
+                                    onTap: () {
+                                      Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) => BookView(
+                                                      bookDetails:
+                                                          searchControllerList
+                                                                  .searchBook![
+                                                              'books']['title'][index])));
+                                    },
+                                    size: 16,
+                                    fontColor: black,
                                   )
                                 ],
                               ),

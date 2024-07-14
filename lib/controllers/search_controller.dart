@@ -25,7 +25,7 @@ class SearchControllerList extends GetxController {
     try {
       var response = await http.get(
         Uri.parse(
-            '${baseUrl}/api/v1/product/category/search?category=${searchTextController.text}'),
+            '${baseUrl}/api/v1/books/search?search=${searchTextController.text}'),
         headers: {
           'Authorization': 'Bearer ${generalConfigController.box.read('token')}'
         },
@@ -35,7 +35,13 @@ class SearchControllerList extends GetxController {
       // print('Response body: $allSchemes');
       if (response.statusCode == 200) {
         print('success');
-        // Get.toNamed(Routes.SEARCHTEXT);
+        Get.toNamed(Routes.SEARCHBOOK);
+        String bookid = searchBook!['books']['title'][0]['_id'].toString();
+        String volumeId =
+            searchBook!['books']['title'][0]['volumes'][0]['_id'].toString();
+        print(volumeId.toString());
+        generalConfigController.box.write('bookID', bookid);
+        generalConfigController.box.write('volumeid', volumeId);
         searchTextController.clear();
         print('Response body: $searchBook');
         searchTextController.clear();

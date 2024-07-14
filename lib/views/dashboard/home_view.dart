@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:odoohackathon1/common/drawer.dart';
 import 'package:odoohackathon1/common/footer.dart';
+import 'package:odoohackathon1/controllers/singleton_controller.dart';
 
 import '../../common/categories.dart';
 import '../../controllers/general_controller.dart';
+import '../../controllers/search_controller.dart';
 import '../../utils/color.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -19,6 +21,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   int currentIndex = 0;
 
+  SearchControllerList searchControllerList = getIt.get<SearchControllerList>();
   @override
   Widget build(BuildContext context) {
     final images = [
@@ -99,20 +102,22 @@ class _HomeViewState extends State<HomeView> {
                 ),
               ),
             ),
-            const Padding(
+             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(
-                // controller:searchFurnitureController.searchTextController,
-                decoration: InputDecoration(
+                controller: searchControllerList.searchTextController,
+                decoration: const InputDecoration(
                   labelText: 'Search Books here',
-                  border: const OutlineInputBorder(),
+                  border: OutlineInputBorder(),
                 ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  searchControllerList.fetchsearchBook();
+                },
                 child: Container(
                   height: 50,
                   width: generalConfigController.dwidth * .5,
