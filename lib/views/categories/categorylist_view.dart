@@ -5,7 +5,9 @@ import 'package:odoohackathon1/utils/color.dart';
 
 import '../../common/button.dart';
 import '../../controllers/category_controller.dart';
+import '../../controllers/search_controller.dart';
 import '../../controllers/singleton_controller.dart';
+import '../book/book_view.dart';
 
 class CategorylistView extends StatefulWidget {
   const CategorylistView({super.key});
@@ -17,6 +19,7 @@ class CategorylistView extends StatefulWidget {
 class _CategorylistViewState extends State<CategorylistView> {
 
   CategoryController categoryController = getIt.get<CategoryController>();
+  SearchControllerList searchControllerList = getIt.get<SearchControllerList>();
   
   @override
   Widget build(BuildContext context) {
@@ -31,7 +34,7 @@ class _CategorylistViewState extends State<CategorylistView> {
                         child: GridView.builder(
                           physics: const NeverScrollableScrollPhysics(),
                           itemCount: categoryController
-                                  .categorySchemes!['product']?.length ??
+                                  .categoryBook!['books']['title']?.length ??
                               0,
                           shrinkWrap: true,
                           gridDelegate:
@@ -43,7 +46,7 @@ class _CategorylistViewState extends State<CategorylistView> {
                           ),
                           itemBuilder: (context, index) {
                             var scheme = categoryController
-                                .categorySchemes!['product'][index];
+                                .categoryBook!['books']['title'][index];
                             return Container(
                               width: double.infinity,
                               decoration: BoxDecoration(
@@ -78,7 +81,7 @@ class _CategorylistViewState extends State<CategorylistView> {
                                       'Price: ${scheme['price']}',
                                       style: GoogleFonts.aBeeZee(
                                         fontSize: 12,
-                                        color: fontColor,
+                                        color: black,
                                       ),
                                     ),
                                     const SizedBox(height: 6),
@@ -87,16 +90,16 @@ class _CategorylistViewState extends State<CategorylistView> {
                                       buttonColor: appbar,
                                       onTap: () {
                                         Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) => ProductScreen(
-                                                    schemeDetails:
-                                                        categoryController
-                                                                .categorySchemes![
-                                                            'product'][index])));
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) => BookView(
+                                                      bookDetails:
+                                                          searchControllerList
+                                                                  .searchBook![
+                                                              'books']['title'][index])));
                                       },
                                       size: 14,
-                                      fontColor: fontColor,
+                                      fontColor: black,
                                     ),
                                   ],
                                 ),
