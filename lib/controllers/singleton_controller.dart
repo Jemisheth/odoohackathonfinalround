@@ -5,6 +5,7 @@ import 'package:get_it/get_it.dart';
 import 'package:odoohackathon1/controllers/category_controller.dart';
 import 'package:odoohackathon1/controllers/getuser_controller.dart';
 
+import 'addcart_controller.dart';
 import 'createOrder_controller.dart';
 import 'createpayment_controller.dart';
 import 'login_controller.dart';
@@ -23,5 +24,6 @@ void singletonSetup() {
   getIt.registerSingleton<SearchControllerList>(SearchControllerList());
   getIt.registerSingleton<CreatepaymentController>(CreatepaymentController());
   getIt.registerSingleton<CreateorderController>(CreateorderController());
+  getIt.registerSingleton<CartController>(CartController());
   
 }

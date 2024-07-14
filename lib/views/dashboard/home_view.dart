@@ -49,22 +49,11 @@ class _HomeViewState extends State<HomeView> {
       drawer: drawer(),
       appBar: AppBar(
         backgroundColor: containerColor,
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Name Here',
-              style: GoogleFonts.aBeeZee(
-                fontSize: 18,
-              ),
-            ),
-            Text(
-              '',
-              style: GoogleFonts.aBeeZee(
-                fontSize: 14,
-              ),
-            ),
-          ],
+        title: Text(
+          'The Book Hub',
+          style: GoogleFonts.aBeeZee(
+            fontSize: 18,
+          ),
         ),
         actions: [
           IconButton(

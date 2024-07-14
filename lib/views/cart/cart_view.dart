@@ -8,8 +8,11 @@ import '../../../common/button.dart';
 import '../../../controllers/general_controller.dart';
 import '../../../controllers/singleton_controller.dart';
 import '../../../utils/color.dart';
+import '../../common/footer.dart';
+import '../../controllers/addcart_controller.dart';
 import '../../controllers/createpayment_controller.dart';
 import '../../controllers/getusercart_controller.dart';
+import '../../routes/app_routes.dart';
 
 class CartViewScreen extends StatefulWidget {
   const CartViewScreen({super.key});
@@ -127,7 +130,7 @@ class _CartViewScreenState extends State<CartViewScreen> {
                                                     const EdgeInsets.all(8.0),
                                                 child: CustomButton(
                                                   buttonText: 'Remove Item',
-                                                  buttonColor: buttonColor,
+                                                  buttonColor: containerColor,
                                                   onTap: () {
                                                     setState(() {
                                                       getUserCart.deleteCartItem(
@@ -138,7 +141,7 @@ class _CartViewScreenState extends State<CartViewScreen> {
                                                     });
                                                   },
                                                   size: 14,
-                                                  fontColor: fontColor,
+                                                  fontColor: black,
                                                 ),
                                               ),
                                             ],
