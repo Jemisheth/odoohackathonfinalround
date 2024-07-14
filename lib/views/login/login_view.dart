@@ -119,14 +119,31 @@ class _LoginViewState extends State<LoginView> {
                           const SizedBox(
                             height: 8,
                           ),
-                          Container(
-                            height: 50,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: containerColor,
-                              borderRadius: BorderRadius.circular(10)
+                          GestureDetector(
+                            onTap: () {
+                              if (_formKey.currentState!.validate()) {
+                                generalConfigController.box
+                                    .write('username', usernameController.text);
+                                if (loginController.isLoading.value) {
+                                  const CircularProgressIndicator();
+                                } else {
+                                  loginController.login();
+                                }
+                                loginController.usernameController.clear();
+                                loginController.emailController.clear();
+                                loginController.passwordController.clear();
+                                loginController.showSnackbar(context);
+                              }
+                            },
+                            child: Container(
+                              height: 50,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: containerColor,
+                                borderRadius: BorderRadius.circular(10)
+                              ),
+                              child: Center(child: Text('Login')),
                             ),
-                            child: Center(child: Text('Login')),
                           ),
                           const SizedBox(
                             height: 6,

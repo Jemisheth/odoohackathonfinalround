@@ -20,10 +20,10 @@ class _SplashViewState extends State<SplashView> {
     Timer(const Duration(seconds: 3), () {
       generalConfigController.dheight = MediaQuery.of(context).size.height;
       generalConfigController.dwidth = MediaQuery.of(context).size.width;
-      Get.offAllNamed(Routes.HOME);
-      // generalConfigController.box.hasData('token')
-      //     ? Get.offAllNamed(Routes.HOME)
-      //     : Get.toNamed(Routes.LOGIN);
+      // Get.offAllNamed(Routes.HOME);
+      generalConfigController.box.hasData('token')
+          ? Get.offAllNamed(Routes.HOME)
+          : Get.offAllNamed(Routes.LOGIN);
     });
   }
 

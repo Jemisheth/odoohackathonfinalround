@@ -22,7 +22,7 @@ Drawer drawer() {
                   child: ClipOval(
                     child: Image.asset(
                       'assets/logo.png',
-                      filterQuality: FilterQuality.high,
+                      // filterQuality: FilterQuality.high,
                       fit: BoxFit.cover,
                       height: 100,
                     ),
@@ -58,7 +58,7 @@ Drawer drawer() {
                 title: Row(
                   children: [
                     Icon(
-                      Icons.person,
+                      Icons.category,
                       color: black,
                       size: Get.width * .05,
                     ),
@@ -83,7 +83,7 @@ Drawer drawer() {
                 title: Row(
                   children: [
                     Icon(
-                      Icons.person,
+                      Icons.history,
                       color: black,
                       size: Get.width * .05,
                     ),

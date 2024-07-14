@@ -34,11 +34,12 @@ class Cards extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: Image.asset(
+                child: Image.network(
                   image,
                   filterQuality: FilterQuality.high,
-                  fit: BoxFit.fitHeight,
+                  fit: BoxFit.fill,
                   height: 100,
+                  width: 100,
                 ),
               ),
               const SizedBox(
@@ -47,7 +48,7 @@ class Cards extends StatelessWidget {
               Text(
                 text,
                 textAlign: TextAlign.center,
-                style: GoogleFonts.aBeeZee(fontSize: 14, color: white),
+                style: GoogleFonts.aBeeZee(fontSize: 14, color: black),
               ),
             ],
           ),

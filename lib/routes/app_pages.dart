@@ -47,11 +47,11 @@ class AppPages {
 
     // book
 
-    GetPage(
-      transition: Transition.rightToLeft,
-      name: Routes.BOOK,
-      page: () => const BookView(),
-    ),
+    // GetPage(
+    //   transition: Transition.rightToLeft,
+    //   name: Routes.BOOK,
+    //   page: () => const BookView(),
+    // ),
 
     // search 
     GetPage(

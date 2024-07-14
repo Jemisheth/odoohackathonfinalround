@@ -9,7 +9,6 @@ import '../utils/constant.dart';
 import 'general_controller.dart';
 
 class LoginController extends GetxController {
-
   var isLoading = false.obs;
   // String username = "";
   // String password = "";
@@ -34,7 +33,7 @@ class LoginController extends GetxController {
   }
 
   Future<void> login() async {
-    const url = ''; // add api link here
+    const url = '${baseUrl}/api/v1/auth/login';
     isLoading = true.obs;
     try {
       var response = await http.post(
@@ -56,11 +55,7 @@ class LoginController extends GetxController {
         generalConfigController.box.write('token', jwtToken);
         generalConfigController.box.write('role', role);
 
-        if (generalConfigController.box.read('role') == 'customer') {
-          Get.offNamed(Routes.HOME);
-        } else if (generalConfigController.box.read('role') == 'admin') {
-          // Get.toNamed(Routes.ADMINHOME);
-        }
+        Get.offAllNamed(Routes.HOME);
       }
     } catch (error) {
       print('Error: $error');
@@ -69,5 +64,4 @@ class LoginController extends GetxController {
       isLoading.value = false;
     }
   }
-  
 }

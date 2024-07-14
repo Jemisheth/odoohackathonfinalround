@@ -53,15 +53,15 @@ class _CategoriesViewState extends State<CategoriesView> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Cards(
-                              image: 'assets/logo.png',
+                              image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMistxXaRsqB0tfxtFwOWaQB4BX6OzqdN0mA&s',
                               text: 'Crime',
                               onTap: () {
                                 // Get.toNamed(Routes.LIVING);
                               },
                             ),
                             Cards(
-                              image: 'assets/logo.png',
-                              text: 'Mystrey',
+                              image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPBaQH0GKsvbKjJqwSgawRZ2h7I3RH139AJA&s',
+                              text: 'Mystery',
                               onTap: () {
                                 // Get.toNamed(Routes.BED);
                               },
@@ -75,15 +75,15 @@ class _CategoriesViewState extends State<CategoriesView> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Cards(
-                              image: 'assets/logo.png',
+                              image: 'https://rukminim2.flixcart.com/image/850/1000/xif0q/book/y/o/c/101-horror-books-to-read-before-you-re-murdered-original-imaghyfkqfvzuhgt.jpeg?q=90&crop=false',
                               text: 'Horror',
                               onTap: () {
                                 // Get.toNamed(Routes.DINING);
                               },
                             ),
                             Cards(
-                              image: 'assets/logo.png',
-                              text: '',
+                              image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSB43phUZYEOFdldxpezCz0lnvR6lK3IA4aAA&s',
+                              text: 'Fiction',
                               onTap: () {
                                 // Get.toNamed(Routes.OFFICE);
                               },
@@ -97,15 +97,15 @@ class _CategoriesViewState extends State<CategoriesView> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Cards(
-                              image: 'assets/logo.png',
-                              text: 'Dining Room',
+                              image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQg3w-KbsjA7yNn4Etz0iCWv3N_1BjcmljowQ&s',
+                              text: 'History',
                               onTap: () {
                                 // Get.toNamed(Routes.DINING);
                               },
                             ),
                             Cards(
-                              image: 'assets/logo.png',
-                              text: 'Home Office',
+                              image: 'https://www.bookishelf.com/wp-content/uploads/2020/01/Best-Biography-books-.png',
+                              text: 'Biography',
                               onTap: () {
                                 // Get.toNamed(Routes.OFFICE);
                               },
@@ -119,15 +119,81 @@ class _CategoriesViewState extends State<CategoriesView> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Cards(
-                              image: 'assets/logo.png',
-                              text: 'Dining Room',
+                              image: 'https://m.media-amazon.com/images/I/91AiNeHUoNL._AC_UF1000,1000_QL80_.jpg',
+                              text: 'Philosopy',
                               onTap: () {
                                 // Get.toNamed(Routes.DINING);
                               },
                             ),
                             Cards(
-                              image: 'assets/logo.png',
-                              text: 'Home Office',
+                              image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsSNW0-ZK6pkRpggg6UrlD6W7c_PNPh3BzJw&s',
+                              text: 'Romance',
+                              onTap: () {
+                                // Get.toNamed(Routes.OFFICE);
+                              },
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Cards(
+                              image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlSUkBkaFznGY1nd6tJ9f2ZKiuOdKf9dnPwg&s',
+                              text: 'Travel',
+                              onTap: () {
+                                // Get.toNamed(Routes.DINING);
+                              },
+                            ),
+                            Cards(
+                              image: 'https://m.media-amazon.com/images/I/61UlsdlWCPL._AC_UF1000,1000_QL80_.jpg',
+                              text: 'Drama',
+                              onTap: () {
+                                // Get.toNamed(Routes.OFFICE);
+                              },
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Cards(
+                              image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWuKE7uhiJcWFxUINnEpbe-6GbogauhpTgPw&s',
+                              text: 'Novel',
+                              onTap: () {
+                                // Get.toNamed(Routes.DINING);
+                              },
+                            ),
+                            Cards(
+                              image: 'https://m.media-amazon.com/images/I/91kKJPpNpaL._AC_UF1000,1000_QL80_.jpg',
+                              text: 'Comic',
+                              onTap: () {
+                                // Get.toNamed(Routes.OFFICE);
+                              },
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Cards(
+                              image: 'https://m.media-amazon.com/images/I/815yfXSZxHL._AC_UF1000,1000_QL80_.jpg',
+                              text: 'Fairy Tale',
+                              onTap: () {
+                                // Get.toNamed(Routes.DINING);
+                              },
+                            ),
+                            Cards(
+                              image: 'https://heartspoken.com/wp-content/uploads/2014/11/Books-Spirit_54351916_600.jpg',
+                              text: 'Spiritual',
                               onTap: () {
                                 // Get.toNamed(Routes.OFFICE);
                               },
