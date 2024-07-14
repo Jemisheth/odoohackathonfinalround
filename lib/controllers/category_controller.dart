@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_brace_in_string_interps
+
 import 'dart:convert';
 
 import 'package:get/get.dart';
@@ -11,28 +13,28 @@ class CategoryController extends GetxController {
   RxString tag = ''.obs;
   RxString cat = ''.obs;
 
-  Map<String, dynamic>? categorySchemes;
+  Map<String, dynamic>? categoryBook;
 
   void clearAllscheme() {
-    categorySchemes?.clear();
+    categoryBook?.clear();
   }
 
   Future<void> fetchCategory() async {
     isLoading.value = true;
     try {
       var response = await http.get(
-        Uri.parse(''), // add api link
+        Uri.parse('${baseUrl}/api/v1/books/search?search=${cat.value}'),
         headers: {
           'Authorization': 'Bearer ${generalConfigController.box.read('token')}'
         },
       );
-      categorySchemes = jsonDecode(response.body);
+      categoryBook = jsonDecode(response.body);
 
       // print('Response body: $allSchemes');
       if (response.statusCode == 200) {
         // allSchemes = jsonDecode(response.body);
         // print('Response body: $allSchemes');
-        Get.toNamed(Routes.CATEGORIES);
+        Get.toNamed(Routes.CVIEW);
       }
     } catch (e) {
       print('Error: $e');
@@ -52,7 +54,7 @@ class CategoryController extends GetxController {
           'Authorization': 'Bearer ${generalConfigController.box.read('token')}'
         },
       );
-      categorySchemes = jsonDecode(response.body);
+      categoryBook = jsonDecode(response.body);
 
       // print('Response body: $allSchemes');
       if (response.statusCode == 200) {

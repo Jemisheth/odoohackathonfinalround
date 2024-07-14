@@ -14,6 +14,7 @@ abstract class Routes {
 
  // categories
  static const CATEGORIES = '/categories';
+ static const CVIEW = '/categoriesviewlist';
 
  // book
  static const BOOK = '/book';

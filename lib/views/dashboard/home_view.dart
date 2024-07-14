@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -5,7 +7,7 @@ import 'package:odoohackathon1/common/drawer.dart';
 import 'package:odoohackathon1/common/footer.dart';
 import 'package:odoohackathon1/controllers/singleton_controller.dart';
 
-import '../../common/categories.dart';
+// import '../../common/categories.dart';
 import '../../controllers/general_controller.dart';
 import '../../controllers/search_controller.dart';
 import '../../utils/color.dart';

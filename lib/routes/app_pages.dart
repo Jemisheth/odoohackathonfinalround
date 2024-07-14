@@ -9,6 +9,7 @@ import 'package:odoohackathon1/views/order/createorder_view.dart';
 import 'package:odoohackathon1/views/order/order_view.dart';
 import 'package:odoohackathon1/views/search%20book/search_view.dart';
 
+import '../views/categories/categorylist_view.dart';
 import '../views/login/register_view.dart';
 import '../views/splash_view.dart';
 import 'app_routes.dart';
@@ -44,6 +45,13 @@ class AppPages {
       name: Routes.CATEGORIES,
       page: () => const CategoriesView(),
     ),
+
+    GetPage(
+      transition: Transition.rightToLeft,
+      name: Routes.CVIEW,
+      page: () => const CategorylistView(),
+    ),
+
 
     // book
 

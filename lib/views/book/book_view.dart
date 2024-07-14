@@ -233,7 +233,6 @@ class _BookViewState extends State<BookView> {
   }
 
   void _showIssueBookDialog(BuildContext context) {
-    TextEditingController reasonController = TextEditingController();
 
     showDialog(
       context: context,
