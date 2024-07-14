@@ -24,11 +24,12 @@ class _CategorylistViewState extends State<CategorylistView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: appbar,
+      ),
       body: SingleChildScrollView(
         child: Column(
                     children: [
-                      const SizedBox(height: 8),
-                      const SizedBox(height: 6),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: GridView.builder(
@@ -42,7 +43,7 @@ class _CategorylistViewState extends State<CategorylistView> {
                             crossAxisCount: 2,
                             crossAxisSpacing: 10.0,
                             mainAxisSpacing: 10.0,
-                            childAspectRatio: .60,
+                            childAspectRatio: .50,
                           ),
                           itemBuilder: (context, index) {
                             var scheme = categoryController
@@ -64,12 +65,13 @@ class _CategorylistViewState extends State<CategorylistView> {
                                         child: Image.network(
                                           '${scheme['Image']['image1']}',
                                           height: 100,
+                                          width: 100,
                                         ),
                                       ),
                                     ),
                                     const SizedBox(height: 6),
                                     Text(
-                                      '${scheme['Name']}',
+                                      '${scheme['Title']}',
                                       style: GoogleFonts.aBeeZee(
                                         fontSize: 14,
                                         color: black,
@@ -78,7 +80,7 @@ class _CategorylistViewState extends State<CategorylistView> {
                                     ),
                                     const SizedBox(height: 6),
                                     Text(
-                                      'Price: ${scheme['price']}',
+                                      'Price: ${scheme['volumes'][0]['price']}',
                                       style: GoogleFonts.aBeeZee(
                                         fontSize: 12,
                                         color: black,
@@ -96,7 +98,7 @@ class _CategorylistViewState extends State<CategorylistView> {
                                                       bookDetails:
                                                           searchControllerList
                                                                   .searchBook![
-                                                              'books']['title'][index])));
+                                                              'books']['title'][0])));
                                       },
                                       size: 14,
                                       fontColor: black,
